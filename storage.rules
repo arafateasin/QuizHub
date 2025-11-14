@@ -1,0 +1,46 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the file
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Helper function to validate image upload
+    function isValidImage() {
+      return request.resource.size < 5 * 1024 * 1024 && // Max 5MB
+             request.resource.contentType.matches('image/.*');
+    }
+    
+    // User avatars - users can manage their own
+    match /avatars/{userId}/{fileName} {
+      allow read: if true; // Public read
+      allow write: if isOwner(userId) && isValidImage();
+      allow delete: if isOwner(userId);
+    }
+    
+    // Quiz images/media - creators can manage their quiz assets
+    match /quizzes/{quizId}/{fileName} {
+      allow read: if true; // Public read
+      allow write: if isAuthenticated(); // Any authenticated user can upload
+      allow delete: if isAuthenticated(); // Owner verification done in Firestore
+    }
+    
+    // Badge images - admin only
+    match /badges/{fileName} {
+      allow read: if true;
+      allow write: if false; // Managed via Firebase Console
+    }
+    
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

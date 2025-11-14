@@ -1,0 +1,49 @@
+mutation CreateQuiz @auth(level: USER) {
+  quiz_insert(
+    data: {
+      title: "My New Quiz"
+      description: "A quiz created by the user"
+      category: "General Knowledge"
+      isPublic: false
+      creatorId_expr: "auth.uid"
+      createdAt_expr: "request.time"
+    }
+  )
+}
+
+query GetPublicQuizzes
+@auth(
+  level: PUBLIC
+  insecureReason: "This operation is safe to expose to the public"
+) {
+  quizzes(where: { isPublic: { eq: true } }) {
+    id
+    title
+    description
+    category
+  }
+}
+
+mutation SubmitQuizAttempt($quizId: UUID!, $score: Int!, $durationSeconds: Int)
+@auth(level: USER) {
+  quizAttempt_insert(
+    data: {
+      quizId: $quizId
+      userId_expr: "auth.uid"
+      completedAt_expr: "request.time"
+      score: $score
+      durationSeconds: $durationSeconds
+    }
+  )
+}
+
+query GetMyQuizAttempts @auth(level: USER) {
+  quizAttempts(where: { userId: { eq_expr: "auth.uid" } }) {
+    id
+    quiz {
+      title
+    }
+    score
+    completedAt
+  }
+}

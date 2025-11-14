@@ -1,0 +1,76 @@
+mutation CreateDemoData @transaction @auth(level: PUBLIC, insecureReason: "This mutation is used to populate the database with seed data.") {
+  user_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      username: "demouser1",
+      email: "demouser1@example.com",
+      createdAt: "2024-04-01T00:00:00Z"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      username: "demouser2",
+      email: "demouser2@example.com",
+      createdAt: "2024-04-02T00:00:00Z"
+    }
+  ])
+  quiz_insertMany(data: [
+    {
+      id: "650e8400-e29b-41d4-a716-446655440002",
+      creatorId: "550e8400-e29b-41d4-a716-446655440000",
+      title: "Demo Quiz 1",
+      description: "A sample quiz for demo purposes",
+      category: "Demo",
+      createdAt: "2024-04-03T00:00:00Z",
+      isPublic: true
+    },
+    {
+      id: "750e8400-e29b-41d4-a716-446655440003",
+      creatorId: "550e8400-e29b-41d4-a716-446655440001",
+      title: "Demo Quiz 2",
+      description: "Another sample quiz",
+      category: "Demo",
+      createdAt: "2024-04-04T00:00:00Z",
+      isPublic: false
+    }
+  ])
+  question_insertMany(data: [
+    {
+      id: "850e8400-e29b-41d4-a716-446655440004",
+      quizId: "650e8400-e29b-41d4-a716-446655440002",
+      text: "What is the capital of France?",
+      correctAnswerIndex: 0
+    },
+    {
+      id: "950e8400-e29b-41d4-a716-446655440005",
+      quizId: "750e8400-e29b-41d4-a716-446655440003",
+      text: "What is 2 + 2?",
+      correctAnswerIndex: 1
+    }
+  ])
+  answerOption_insertMany(data: [
+    {
+      id: "a50e8400-e29b-41d4-a716-446655440006",
+      questionId: "850e8400-e29b-41d4-a716-446655440004",
+      index: 0,
+      text: "Paris"
+    },
+    {
+      id: "b50e8400-e29b-41d4-a716-446655440007",
+      questionId: "850e8400-e29b-41d4-a716-446655440004",
+      index: 1,
+      text: "London"
+    },
+    {
+      id: "c50e8400-e29b-41d4-a716-446655440008",
+      questionId: "950e8400-e29b-41d4-a716-446655440005",
+      index: 0,
+      text: "3"
+    },
+    {
+      id: "d50e8400-e29b-41d4-a716-446655440009",
+      questionId: "950e8400-e29b-41d4-a716-446655440005",
+      index: 1,
+      text: "4"
+    }
+  ])
+}

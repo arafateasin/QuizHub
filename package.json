@@ -1,0 +1,38 @@
+{
+  "name": "quizhub-monorepo",
+  "version": "1.0.0",
+  "description": "Microservice-based quiz platform with adaptive learning and gamification",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:gateway\" \"npm run dev:auth\" \"npm run dev:quiz\" \"npm run dev:frontend\"",
+    "dev:auth": "npm run dev --workspace=apps/auth-service",
+    "dev:quiz": "npm run dev --workspace=apps/quiz-service",
+    "dev:leaderboard": "npm run dev --workspace=apps/leaderboard-service",
+    "dev:feedback": "npm run dev --workspace=apps/feedback-service",
+    "dev:notification": "npm run dev --workspace=apps/notification-service",
+    "dev:gateway": "npm run dev --workspace=apps/gateway",
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "clean": "npm run clean --workspaces && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated"
+  }
+}

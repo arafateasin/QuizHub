@@ -1,0 +1,1521 @@
+"""
+✨ `AnswerOption_KeyOutput` returns the primary key fields of table type `AnswerOption`.
+
+It has the same format as `AnswerOption_Key`, but is only used as mutation return value.
+"""
+scalar AnswerOption_KeyOutput
+"""
+✨ `Question_KeyOutput` returns the primary key fields of table type `Question`.
+
+It has the same format as `Question_Key`, but is only used as mutation return value.
+"""
+scalar Question_KeyOutput
+"""
+✨ `Quiz_KeyOutput` returns the primary key fields of table type `Quiz`.
+
+It has the same format as `Quiz_Key`, but is only used as mutation return value.
+"""
+scalar Quiz_KeyOutput
+"""
+✨ `QuizAttempt_KeyOutput` returns the primary key fields of table type `QuizAttempt`.
+
+It has the same format as `QuizAttempt_Key`, but is only used as mutation return value.
+"""
+scalar QuizAttempt_KeyOutput
+"""
+✨ `User_KeyOutput` returns the primary key fields of table type `User`.
+
+It has the same format as `User_Key`, but is only used as mutation return value.
+"""
+scalar User_KeyOutput
+"""
+✨ Generated data input type for table 'AnswerOption'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input AnswerOption_Data {
+  """
+  ✨ Generated from Field `AnswerOption`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `AnswerOption`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `AnswerOption`.`questionId` of type `UUID`
+  """
+  questionId: UUID
+  """
+  ✨ `_expr` server value variant of `questionId` (✨ Generated from Field `AnswerOption`.`questionId` of type `UUID`)
+  """
+  questionId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `AnswerOption`.`question` of type `Question`
+  """
+  question: Question_Key
+  """
+  ✨ Generated from Field `AnswerOption`.`index` of type `Int!`
+  """
+  index: Int
+  """
+  ✨ `_expr` server value variant of `index` (✨ Generated from Field `AnswerOption`.`index` of type `Int!`)
+  """
+  index_expr: Int_Expr
+  """
+  ✨ `_update` server value variant of `index` (✨ Generated from Field `AnswerOption`.`index` of type `Int!`)
+  """
+  index_update: [Int_Update!]
+  """
+  ✨ Generated from Field `AnswerOption`.`text` of type `String!`
+  """
+  text: String
+  """
+  ✨ `_expr` server value variant of `text` (✨ Generated from Field `AnswerOption`.`text` of type `String!`)
+  """
+  text_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'AnswerOption'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input AnswerOption_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [AnswerOption_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: AnswerOption_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [AnswerOption_Filter!]
+  """
+  ✨ Generated from Field `AnswerOption`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`questionId` of type `UUID`
+  """
+  questionId: UUID_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`question` of type `Question`
+  """
+  question: Question_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`index` of type `Int!`
+  """
+  index: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`text` of type `String!`
+  """
+  text: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'AnswerOption'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input AnswerOption_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [AnswerOption_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: AnswerOption_Filter
+}
+"""
+✨ Generated having input type for table 'AnswerOption'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input AnswerOption_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [AnswerOption_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: AnswerOption_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [AnswerOption_Having!]
+  """
+  ✨ Generated from Field `AnswerOption`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`index_count` of type `Int!`
+  """
+  index_count: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`questionId_count` of type `Int!`
+  """
+  questionId_count: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`text_count` of type `Int!`
+  """
+  text_count: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`index_sum` of type `Int`
+  """
+  index_sum: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`index_avg` of type `Float`
+  """
+  index_avg: Float_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`index_min` of type `Int`
+  """
+  index_min: Int_Filter
+  """
+  ✨ Generated from Field `AnswerOption`.`index_max` of type `Int`
+  """
+  index_max: Int_Filter
+}
+"""
+✨ Generated key input type for table 'AnswerOption'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input AnswerOption_Key {
+  """
+  ✨ Generated from Field `AnswerOption`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `AnswerOption`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'AnswerOption'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input AnswerOption_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: AnswerOption_Filter
+}
+"""
+✨ Generated order input type for table 'AnswerOption'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input AnswerOption_Order {
+  """
+  ✨ Generated from Field `AnswerOption`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`questionId` of type `UUID`
+  """
+  questionId: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`question` of type `Question`
+  """
+  question: Question_Order
+  """
+  ✨ Generated from Field `AnswerOption`.`index` of type `Int!`
+  """
+  index: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`text` of type `String!`
+  """
+  text: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`index_count` of type `Int!`
+  """
+  index_count: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`questionId_count` of type `Int!`
+  """
+  questionId_count: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`text_count` of type `Int!`
+  """
+  text_count: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`index_sum` of type `Int`
+  """
+  index_sum: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`index_avg` of type `Float`
+  """
+  index_avg: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`index_min` of type `Int`
+  """
+  index_min: OrderDirection
+  """
+  ✨ Generated from Field `AnswerOption`.`index_max` of type `Int`
+  """
+  index_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Question'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Question_Data {
+  """
+  ✨ Generated from Field `Question`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Question`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Question`.`quizId` of type `UUID`
+  """
+  quizId: UUID
+  """
+  ✨ `_expr` server value variant of `quizId` (✨ Generated from Field `Question`.`quizId` of type `UUID`)
+  """
+  quizId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Question`.`quiz` of type `Quiz`
+  """
+  quiz: Quiz_Key
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex` of type `Int!`
+  """
+  correctAnswerIndex: Int
+  """
+  ✨ `_expr` server value variant of `correctAnswerIndex` (✨ Generated from Field `Question`.`correctAnswerIndex` of type `Int!`)
+  """
+  correctAnswerIndex_expr: Int_Expr
+  """
+  ✨ `_update` server value variant of `correctAnswerIndex` (✨ Generated from Field `Question`.`correctAnswerIndex` of type `Int!`)
+  """
+  correctAnswerIndex_update: [Int_Update!]
+  """
+  ✨ Generated from Field `Question`.`explanation` of type `String`
+  """
+  explanation: String
+  """
+  ✨ `_expr` server value variant of `explanation` (✨ Generated from Field `Question`.`explanation` of type `String`)
+  """
+  explanation_expr: String_Expr
+  """
+  ✨ Generated from Field `Question`.`imageUrl` of type `String`
+  """
+  imageUrl: String
+  """
+  ✨ `_expr` server value variant of `imageUrl` (✨ Generated from Field `Question`.`imageUrl` of type `String`)
+  """
+  imageUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Question`.`text` of type `String!`
+  """
+  text: String
+  """
+  ✨ `_expr` server value variant of `text` (✨ Generated from Field `Question`.`text` of type `String!`)
+  """
+  text_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Question'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Question_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Question_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Question_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Question_Filter!]
+  """
+  ✨ Generated from Field `Question`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Question`.`quizId` of type `UUID`
+  """
+  quizId: UUID_Filter
+  """
+  ✨ Generated from Field `Question`.`quiz` of type `Quiz`
+  """
+  quiz: Quiz_Filter
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex` of type `Int!`
+  """
+  correctAnswerIndex: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`explanation` of type `String`
+  """
+  explanation: String_Filter
+  """
+  ✨ Generated from Field `Question`.`imageUrl` of type `String`
+  """
+  imageUrl: String_Filter
+  """
+  ✨ Generated from Field `Question`.`text` of type `String!`
+  """
+  text: String_Filter
+  """
+  ✨ Generated from Field `Question`.`answerOptions_on_question` of type `[AnswerOption!]!`
+  """
+  answerOptions_on_question: AnswerOption_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Question'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Question_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Question_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Question_Filter
+}
+"""
+✨ Generated having input type for table 'Question'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Question_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Question_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Question_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Question_Having!]
+  """
+  ✨ Generated from Field `Question`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_count` of type `Int!`
+  """
+  correctAnswerIndex_count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`explanation_count` of type `Int!`
+  """
+  explanation_count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`quizId_count` of type `Int!`
+  """
+  quizId_count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`text_count` of type `Int!`
+  """
+  text_count: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_sum` of type `Int`
+  """
+  correctAnswerIndex_sum: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_avg` of type `Float`
+  """
+  correctAnswerIndex_avg: Float_Filter
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_min` of type `Int`
+  """
+  correctAnswerIndex_min: Int_Filter
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_max` of type `Int`
+  """
+  correctAnswerIndex_max: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Question'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Question_Key {
+  """
+  ✨ Generated from Field `Question`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Question`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Question'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Question_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Question_Filter
+}
+"""
+✨ Generated order input type for table 'Question'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Question_Order {
+  """
+  ✨ Generated from Field `Question`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`quizId` of type `UUID`
+  """
+  quizId: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`quiz` of type `Quiz`
+  """
+  quiz: Quiz_Order
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex` of type `Int!`
+  """
+  correctAnswerIndex: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`explanation` of type `String`
+  """
+  explanation: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`imageUrl` of type `String`
+  """
+  imageUrl: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`text` of type `String!`
+  """
+  text: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_count` of type `Int!`
+  """
+  correctAnswerIndex_count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`explanation_count` of type `Int!`
+  """
+  explanation_count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`quizId_count` of type `Int!`
+  """
+  quizId_count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`text_count` of type `Int!`
+  """
+  text_count: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_sum` of type `Int`
+  """
+  correctAnswerIndex_sum: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_avg` of type `Float`
+  """
+  correctAnswerIndex_avg: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_min` of type `Int`
+  """
+  correctAnswerIndex_min: OrderDirection
+  """
+  ✨ Generated from Field `Question`.`correctAnswerIndex_max` of type `Int`
+  """
+  correctAnswerIndex_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Quiz'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Quiz_Data {
+  """
+  ✨ Generated from Field `Quiz`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Quiz`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Quiz`.`creatorId` of type `UUID`
+  """
+  creatorId: UUID
+  """
+  ✨ `_expr` server value variant of `creatorId` (✨ Generated from Field `Quiz`.`creatorId` of type `UUID`)
+  """
+  creatorId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Quiz`.`creator` of type `User`
+  """
+  creator: User_Key
+  """
+  ✨ Generated from Field `Quiz`.`category` of type `String!`
+  """
+  category: String
+  """
+  ✨ `_expr` server value variant of `category` (✨ Generated from Field `Quiz`.`category` of type `String!`)
+  """
+  category_expr: String_Expr
+  """
+  ✨ Generated from Field `Quiz`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Quiz`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Quiz`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `Quiz`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Quiz`.`description` of type `String`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `Quiz`.`description` of type `String`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `Quiz`.`imageUrl` of type `String`
+  """
+  imageUrl: String
+  """
+  ✨ `_expr` server value variant of `imageUrl` (✨ Generated from Field `Quiz`.`imageUrl` of type `String`)
+  """
+  imageUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Quiz`.`isPublic` of type `Boolean!`
+  """
+  isPublic: Boolean
+  """
+  ✨ `_expr` server value variant of `isPublic` (✨ Generated from Field `Quiz`.`isPublic` of type `Boolean!`)
+  """
+  isPublic_expr: Boolean_Expr
+  """
+  ✨ Generated from Field `Quiz`.`title` of type `String!`
+  """
+  title: String
+  """
+  ✨ `_expr` server value variant of `title` (✨ Generated from Field `Quiz`.`title` of type `String!`)
+  """
+  title_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Quiz'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Quiz_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Quiz_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Quiz_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Quiz_Filter!]
+  """
+  ✨ Generated from Field `Quiz`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Quiz`.`creatorId` of type `UUID`
+  """
+  creatorId: UUID_Filter
+  """
+  ✨ Generated from Field `Quiz`.`creator` of type `User`
+  """
+  creator: User_Filter
+  """
+  ✨ Generated from Field `Quiz`.`category` of type `String!`
+  """
+  category: String_Filter
+  """
+  ✨ Generated from Field `Quiz`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Quiz`.`description` of type `String`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `Quiz`.`imageUrl` of type `String`
+  """
+  imageUrl: String_Filter
+  """
+  ✨ Generated from Field `Quiz`.`isPublic` of type `Boolean!`
+  """
+  isPublic: Boolean_Filter
+  """
+  ✨ Generated from Field `Quiz`.`title` of type `String!`
+  """
+  title: String_Filter
+  """
+  ✨ Generated from Field `Quiz`.`questions_on_quiz` of type `[Question!]!`
+  """
+  questions_on_quiz: Question_ListFilter
+  """
+  ✨ Generated from Field `Quiz`.`quizAttempts_on_quiz` of type `[QuizAttempt!]!`
+  """
+  quizAttempts_on_quiz: QuizAttempt_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Quiz'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Quiz_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Quiz_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Quiz_Filter
+}
+"""
+✨ Generated having input type for table 'Quiz'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Quiz_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Quiz_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Quiz_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Quiz_Having!]
+  """
+  ✨ Generated from Field `Quiz`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`category_count` of type `Int!`
+  """
+  category_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`creatorId_count` of type `Int!`
+  """
+  creatorId_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`isPublic_count` of type `Int!`
+  """
+  isPublic_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`title_count` of type `Int!`
+  """
+  title_count: Int_Filter
+  """
+  ✨ Generated from Field `Quiz`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Quiz`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Quiz'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Quiz_Key {
+  """
+  ✨ Generated from Field `Quiz`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Quiz`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Quiz'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Quiz_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Quiz_Filter
+}
+"""
+✨ Generated order input type for table 'Quiz'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Quiz_Order {
+  """
+  ✨ Generated from Field `Quiz`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`creatorId` of type `UUID`
+  """
+  creatorId: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`creator` of type `User`
+  """
+  creator: User_Order
+  """
+  ✨ Generated from Field `Quiz`.`category` of type `String!`
+  """
+  category: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`description` of type `String`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`imageUrl` of type `String`
+  """
+  imageUrl: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`isPublic` of type `Boolean!`
+  """
+  isPublic: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`title` of type `String!`
+  """
+  title: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`category_count` of type `Int!`
+  """
+  category_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`creatorId_count` of type `Int!`
+  """
+  creatorId_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`isPublic_count` of type `Int!`
+  """
+  isPublic_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`title_count` of type `Int!`
+  """
+  title_count: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Quiz`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'QuizAttempt'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input QuizAttempt_Data {
+  """
+  ✨ Generated from Field `QuizAttempt`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `QuizAttempt`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `QuizAttempt`.`quizId` of type `UUID`
+  """
+  quizId: UUID
+  """
+  ✨ `_expr` server value variant of `quizId` (✨ Generated from Field `QuizAttempt`.`quizId` of type `UUID`)
+  """
+  quizId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `QuizAttempt`.`userId` of type `UUID`
+  """
+  userId: UUID
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `QuizAttempt`.`userId` of type `UUID`)
+  """
+  userId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `QuizAttempt`.`quiz` of type `Quiz`
+  """
+  quiz: Quiz_Key
+  """
+  ✨ Generated from Field `QuizAttempt`.`user` of type `User`
+  """
+  user: User_Key
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt` of type `Timestamp!`
+  """
+  completedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `completedAt` (✨ Generated from Field `QuizAttempt`.`completedAt` of type `Timestamp!`)
+  """
+  completedAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `completedAt` (✨ Generated from Field `QuizAttempt`.`completedAt` of type `Timestamp!`)
+  """
+  completedAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `completedAt` (✨ Generated from Field `QuizAttempt`.`completedAt` of type `Timestamp!`)
+  """
+  completedAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds` of type `Int`
+  """
+  durationSeconds: Int
+  """
+  ✨ `_expr` server value variant of `durationSeconds` (✨ Generated from Field `QuizAttempt`.`durationSeconds` of type `Int`)
+  """
+  durationSeconds_expr: Int_Expr
+  """
+  ✨ `_update` server value variant of `durationSeconds` (✨ Generated from Field `QuizAttempt`.`durationSeconds` of type `Int`)
+  """
+  durationSeconds_update: [Int_Update!]
+  """
+  ✨ Generated from Field `QuizAttempt`.`score` of type `Int!`
+  """
+  score: Int
+  """
+  ✨ `_expr` server value variant of `score` (✨ Generated from Field `QuizAttempt`.`score` of type `Int!`)
+  """
+  score_expr: Int_Expr
+  """
+  ✨ `_update` server value variant of `score` (✨ Generated from Field `QuizAttempt`.`score` of type `Int!`)
+  """
+  score_update: [Int_Update!]
+}
+"""
+✨ Generated filter input type for table 'QuizAttempt'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input QuizAttempt_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [QuizAttempt_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: QuizAttempt_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [QuizAttempt_Filter!]
+  """
+  ✨ Generated from Field `QuizAttempt`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`quizId` of type `UUID`
+  """
+  quizId: UUID_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`userId` of type `UUID`
+  """
+  userId: UUID_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`quiz` of type `Quiz`
+  """
+  quiz: Quiz_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`user` of type `User`
+  """
+  user: User_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt` of type `Timestamp!`
+  """
+  completedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds` of type `Int`
+  """
+  durationSeconds: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`score` of type `Int!`
+  """
+  score: Int_Filter
+}
+"""
+✨ Generated first-row input type for table 'QuizAttempt'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input QuizAttempt_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [QuizAttempt_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: QuizAttempt_Filter
+}
+"""
+✨ Generated having input type for table 'QuizAttempt'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input QuizAttempt_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [QuizAttempt_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: QuizAttempt_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [QuizAttempt_Having!]
+  """
+  ✨ Generated from Field `QuizAttempt`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt_count` of type `Int!`
+  """
+  completedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_count` of type `Int!`
+  """
+  durationSeconds_count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`quizId_count` of type `Int!`
+  """
+  quizId_count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_count` of type `Int!`
+  """
+  score_count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_sum` of type `Int`
+  """
+  durationSeconds_sum: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_sum` of type `Int`
+  """
+  score_sum: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_avg` of type `Float`
+  """
+  durationSeconds_avg: Float_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_avg` of type `Float`
+  """
+  score_avg: Float_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt_min` of type `Timestamp`
+  """
+  completedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_min` of type `Int`
+  """
+  durationSeconds_min: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_min` of type `Int`
+  """
+  score_min: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt_max` of type `Timestamp`
+  """
+  completedAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_max` of type `Int`
+  """
+  durationSeconds_max: Int_Filter
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_max` of type `Int`
+  """
+  score_max: Int_Filter
+}
+"""
+✨ Generated key input type for table 'QuizAttempt'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input QuizAttempt_Key {
+  """
+  ✨ Generated from Field `QuizAttempt`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `QuizAttempt`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'QuizAttempt'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input QuizAttempt_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: QuizAttempt_Filter
+}
+"""
+✨ Generated order input type for table 'QuizAttempt'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input QuizAttempt_Order {
+  """
+  ✨ Generated from Field `QuizAttempt`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`quizId` of type `UUID`
+  """
+  quizId: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`userId` of type `UUID`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`quiz` of type `Quiz`
+  """
+  quiz: Quiz_Order
+  """
+  ✨ Generated from Field `QuizAttempt`.`user` of type `User`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt` of type `Timestamp!`
+  """
+  completedAt: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds` of type `Int`
+  """
+  durationSeconds: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`score` of type `Int!`
+  """
+  score: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt_count` of type `Int!`
+  """
+  completedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_count` of type `Int!`
+  """
+  durationSeconds_count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`quizId_count` of type `Int!`
+  """
+  quizId_count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_count` of type `Int!`
+  """
+  score_count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_sum` of type `Int`
+  """
+  durationSeconds_sum: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_sum` of type `Int`
+  """
+  score_sum: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_avg` of type `Float`
+  """
+  durationSeconds_avg: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_avg` of type `Float`
+  """
+  score_avg: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt_min` of type `Timestamp`
+  """
+  completedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_min` of type `Int`
+  """
+  durationSeconds_min: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_min` of type `Int`
+  """
+  score_min: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`completedAt_max` of type `Timestamp`
+  """
+  completedAt_max: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`durationSeconds_max` of type `Int`
+  """
+  durationSeconds_max: OrderDirection
+  """
+  ✨ Generated from Field `QuizAttempt`.`score_max` of type `Int`
+  """
+  score_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'User'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input User_Data {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `User`.`bio` of type `String`
+  """
+  bio: String
+  """
+  ✨ `_expr` server value variant of `bio` (✨ Generated from Field `User`.`bio` of type `String`)
+  """
+  bio_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String
+  """
+  ✨ `_expr` server value variant of `email` (✨ Generated from Field `User`.`email` of type `String!`)
+  """
+  email_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`photoUrl` of type `String`
+  """
+  photoUrl: String
+  """
+  ✨ `_expr` server value variant of `photoUrl` (✨ Generated from Field `User`.`photoUrl` of type `String`)
+  """
+  photoUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`username` of type `String!`
+  """
+  username: String
+  """
+  ✨ `_expr` server value variant of `username` (✨ Generated from Field `User`.`username` of type `String!`)
+  """
+  username_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'User'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [User_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: User_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [User_Filter!]
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `User`.`bio` of type `String`
+  """
+  bio: String_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String_Filter
+  """
+  ✨ Generated from Field `User`.`photoUrl` of type `String`
+  """
+  photoUrl: String_Filter
+  """
+  ✨ Generated from Field `User`.`username` of type `String!`
+  """
+  username: String_Filter
+  """
+  ✨ Generated from Field `User`.`quizzes_on_creator` of type `[Quiz!]!`
+  """
+  quizzes_on_creator: Quiz_ListFilter
+  """
+  ✨ Generated from Field `User`.`quizAttempts_on_user` of type `[QuizAttempt!]!`
+  """
+  quizAttempts_on_user: QuizAttempt_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'User'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input User_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [User_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: User_Filter
+}
+"""
+✨ Generated having input type for table 'User'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [User_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: User_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [User_Having!]
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`bio_count` of type `Int!`
+  """
+  bio_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`photoUrl_count` of type `Int!`
+  """
+  photoUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`username_count` of type `Int!`
+  """
+  username_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'User'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input User_Key {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'User'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input User_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: User_Filter
+}
+"""
+✨ Generated order input type for table 'User'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input User_Order {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `User`.`bio` of type `String`
+  """
+  bio: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: OrderDirection
+  """
+  ✨ Generated from Field `User`.`photoUrl` of type `String`
+  """
+  photoUrl: OrderDirection
+  """
+  ✨ Generated from Field `User`.`username` of type `String!`
+  """
+  username: OrderDirection
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`bio_count` of type `Int!`
+  """
+  bio_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`photoUrl_count` of type `Int!`
+  """
+  photoUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`username_count` of type `Int!`
+  """
+  username_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}

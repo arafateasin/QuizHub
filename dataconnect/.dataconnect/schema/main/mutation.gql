@@ -1,0 +1,562 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `AnswerOption` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  answerOption_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: AnswerOption_Data!
+  ): AnswerOption_KeyOutput! @fdc_generated(from: "AnswerOption", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Question` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  question_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Question_Data!
+  ): Question_KeyOutput! @fdc_generated(from: "Question", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Quiz` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  quiz_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Quiz_Data!
+  ): Quiz_KeyOutput! @fdc_generated(from: "Quiz", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `QuizAttempt` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  quizAttempt_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: QuizAttempt_Data!
+  ): QuizAttempt_KeyOutput! @fdc_generated(from: "QuizAttempt", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `AnswerOption` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  answerOption_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [AnswerOption_Data!]!
+  ): [AnswerOption_KeyOutput!]! @fdc_generated(from: "AnswerOption", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Question` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  question_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Question_Data!]!
+  ): [Question_KeyOutput!]! @fdc_generated(from: "Question", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Quiz` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  quiz_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Quiz_Data!]!
+  ): [Quiz_KeyOutput!]! @fdc_generated(from: "Quiz", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `QuizAttempt` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  quizAttempt_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [QuizAttempt_Data!]!
+  ): [QuizAttempt_KeyOutput!]! @fdc_generated(from: "QuizAttempt", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `AnswerOption` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `AnswerOption`.
+  """
+  answerOption_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: AnswerOption_Data!
+  ): AnswerOption_KeyOutput! @fdc_generated(from: "AnswerOption", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Question` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Question`.
+  """
+  question_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Question_Data!
+  ): Question_KeyOutput! @fdc_generated(from: "Question", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Quiz` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Quiz`.
+  """
+  quiz_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Quiz_Data!
+  ): Quiz_KeyOutput! @fdc_generated(from: "Quiz", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `QuizAttempt` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `QuizAttempt`.
+  """
+  quizAttempt_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: QuizAttempt_Data!
+  ): QuizAttempt_KeyOutput! @fdc_generated(from: "QuizAttempt", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `AnswerOption` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `AnswerOption`.
+  """
+  answerOption_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [AnswerOption_Data!]!
+  ): [AnswerOption_KeyOutput!]! @fdc_generated(from: "AnswerOption", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Question` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Question`.
+  """
+  question_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Question_Data!]!
+  ): [Question_KeyOutput!]! @fdc_generated(from: "Question", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Quiz` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Quiz`.
+  """
+  quiz_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Quiz_Data!]!
+  ): [Quiz_KeyOutput!]! @fdc_generated(from: "Quiz", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `QuizAttempt` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `QuizAttempt`.
+  """
+  quizAttempt_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [QuizAttempt_Data!]!
+  ): [QuizAttempt_KeyOutput!]! @fdc_generated(from: "QuizAttempt", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `AnswerOption` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `AnswerOption` or `null` if not found.
+  """
+  answerOption_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: AnswerOption_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: AnswerOption_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: AnswerOption_Data!
+  ): AnswerOption_KeyOutput @fdc_generated(from: "AnswerOption", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Question` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Question` or `null` if not found.
+  """
+  question_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Question_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Question_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Question_Data!
+  ): Question_KeyOutput @fdc_generated(from: "Question", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Quiz` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Quiz` or `null` if not found.
+  """
+  quiz_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Quiz_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Quiz_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Quiz_Data!
+  ): Quiz_KeyOutput @fdc_generated(from: "Quiz", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `QuizAttempt` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `QuizAttempt` or `null` if not found.
+  """
+  quizAttempt_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: QuizAttempt_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: QuizAttempt_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: QuizAttempt_Data!
+  ): QuizAttempt_KeyOutput @fdc_generated(from: "QuizAttempt", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
+  """
+  user_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `AnswerOption` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  answerOption_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: AnswerOption_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: AnswerOption_Data!
+  ): Int! @fdc_generated(from: "AnswerOption", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Question` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  question_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Question_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Question_Data!
+  ): Int! @fdc_generated(from: "Question", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Quiz` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  quiz_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Quiz_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Quiz_Data!
+  ): Int! @fdc_generated(from: "Quiz", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `QuizAttempt` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  quizAttempt_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: QuizAttempt_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: QuizAttempt_Data!
+  ): Int! @fdc_generated(from: "QuizAttempt", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `AnswerOption` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  answerOption_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: AnswerOption_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: AnswerOption_FirstRow
+  ): AnswerOption_KeyOutput @fdc_generated(from: "AnswerOption", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Question` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  question_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Question_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Question_FirstRow
+  ): Question_KeyOutput @fdc_generated(from: "Question", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Quiz` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  quiz_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Quiz_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Quiz_FirstRow
+  ): Quiz_KeyOutput @fdc_generated(from: "Quiz", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `QuizAttempt` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  quizAttempt_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: QuizAttempt_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: QuizAttempt_FirstRow
+  ): QuizAttempt_KeyOutput @fdc_generated(from: "QuizAttempt", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `AnswerOption` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  answerOption_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: AnswerOption_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "AnswerOption", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Question` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  question_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Question_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Question", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Quiz` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  quiz_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Quiz_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Quiz", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `QuizAttempt` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  quizAttempt_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: QuizAttempt_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "QuizAttempt", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+}

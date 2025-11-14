@@ -1,0 +1,166 @@
+version: '3.9'
+
+services:
+  # Redis for caching and leaderboard
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - quizhub-network
+
+  # Auth Service
+  auth-service:
+    build:
+      context: ./apps/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+    env_file:
+      - .env
+    volumes:
+      - ./apps/auth-service:/app
+      - /app/node_modules
+    depends_on:
+      - redis
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+  # Quiz Service
+  quiz-service:
+    build:
+      context: ./apps/quiz-service
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+    env_file:
+      - .env
+    volumes:
+      - ./apps/quiz-service:/app
+      - /app/node_modules
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+  # Leaderboard Service
+  leaderboard-service:
+    build:
+      context: ./apps/leaderboard-service
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+    env_file:
+      - .env
+    volumes:
+      - ./apps/leaderboard-service:/app
+      - /app/node_modules
+    depends_on:
+      - redis
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+  # Feedback Service
+  feedback-service:
+    build:
+      context: ./apps/feedback-service
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=development
+      - PORT=3004
+    env_file:
+      - .env
+    volumes:
+      - ./apps/feedback-service:/app
+      - /app/node_modules
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+  # Notification Service
+  notification-service:
+    build:
+      context: ./apps/notification-service
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
+    env_file:
+      - .env
+    volumes:
+      - ./apps/notification-service:/app
+      - /app/node_modules
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+  # API Gateway
+  gateway:
+    build:
+      context: ./apps/gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    env_file:
+      - .env
+    volumes:
+      - ./apps/gateway:/app
+      - /app/node_modules
+    depends_on:
+      - auth-service
+      - quiz-service
+      - leaderboard-service
+      - feedback-service
+      - notification-service
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3006"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://gateway:3000
+    env_file:
+      - .env
+    volumes:
+      - ./apps/frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - gateway
+    networks:
+      - quizhub-network
+    restart: unless-stopped
+
+networks:
+  quizhub-network:
+    driver: bridge
+
+volumes:
+  redis-data:

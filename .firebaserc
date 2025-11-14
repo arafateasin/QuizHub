@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "quizhub-98649"
+  },
+  "targets": {
+    "quizhub-98649": {
+      "hosting": {
+        "quizhub": [
+          "quizhub-98649"
+        ]
+      }
+    }
+  }
+}
