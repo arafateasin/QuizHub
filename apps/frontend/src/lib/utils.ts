@@ -142,3 +142,14 @@ export function shuffleArray<T>(array: T[]): T[] {
   }
   return shuffled;
 }
+
+/**
+ * Format date to readable string (e.g., "Jan 1, 2024")
+ */
+export function formatDate(date: string | Date): string {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}

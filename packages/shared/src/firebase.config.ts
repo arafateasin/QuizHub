@@ -5,22 +5,18 @@
 
 export const firebaseConfig = {
   apiKey:
-    process.env.NEXT_PUBLIC_FIREBASE_API_KEY ||
-    "AIzaSyDQzIyWyRlpxZdwcF4eVQqK7yns_QbTNpM",
+    process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "",
   authDomain:
-    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ||
-    "quizhub-98649.firebaseapp.com",
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "quizhub-98649",
+    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "",
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "",
   storageBucket:
-    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ||
-    "quizhub-98649.firebasestorage.app",
+    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "",
   messagingSenderId:
-    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "113444927449",
+    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "",
   appId:
-    process.env.NEXT_PUBLIC_FIREBASE_APP_ID ||
-    "1:113444927449:web:846d144c88f1b2045bcbc8",
+    process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "",
   measurementId:
-    process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "G-VEMWBTK5DG",
+    process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "",
 };
 
 /**

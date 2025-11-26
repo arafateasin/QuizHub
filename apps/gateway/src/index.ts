@@ -1,14 +1,14 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import dotenv from "dotenv";
 import { logger } from "./utils/logger";
 import authProxy from "./routes/auth.proxy";
 import quizProxy from "./routes/quiz.proxy";
 import { errorHandler } from "./middleware/error.middleware";
-
-dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -35,29 +35,15 @@ const limiter = rateLimit({
 });
 app.use("/api/", limiter);
 
-// Body parsing
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Health check
-app.get("/health", (req: Request, res: Response) => {
-  res.status(200).json({
-    success: true,
-    service: "api-gateway",
-    status: "healthy",
-    timestamp: new Date().toISOString(),
-    services: {
-      auth: process.env.AUTH_SERVICE_URL,
-      quiz: process.env.QUIZ_SERVICE_URL,
-    },
-  });
-});
-
 // Service routes
 app.use("/api/auth", authProxy);
 app.use("/api/users", authProxy);
 app.use("/api/quizzes", quizProxy);
 app.use("/api/attempts", quizProxy);
+
+// Body parsing (must be after proxies to avoid consuming stream)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // 404 Handler
 app.use((req: Request, res: Response) => {

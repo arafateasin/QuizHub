@@ -13,7 +13,7 @@ export const initializeFirebaseAdmin = () => {
 
   try {
     firebaseApp = admin.initializeApp({
-      projectId: process.env.FIREBASE_PROJECT_ID || "quizhub-98649",
+      projectId: process.env.FIREBASE_PROJECT_ID,
     });
 
     logger.info("✅ Firebase Admin SDK initialized");

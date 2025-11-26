@@ -4,6 +4,7 @@ import {
   submitAttempt,
   getAttempt,
   getUserAttempts,
+  getUserStats,
 } from "../controllers/attempt.controller";
 import { authenticate } from "../middleware/auth.middleware";
 
@@ -16,5 +17,6 @@ router.post("/start", startAttempt);
 router.post("/:id/submit", submitAttempt);
 router.get("/:id", getAttempt);
 router.get("/user/history", getUserAttempts);
+router.get("/user/stats", getUserStats);
 
 export default router;

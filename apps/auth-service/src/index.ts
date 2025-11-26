@@ -1,15 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import dotenv from "dotenv";
 import { initializeFirebaseAdmin } from "./config/firebase-admin";
 import { logger } from "./utils/logger";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import { errorHandler } from "./middleware/error.middleware";
 import { setupSwagger } from "./config/swagger";
-
-dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 3001;

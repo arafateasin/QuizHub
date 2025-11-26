@@ -17,6 +17,7 @@ out/
 .env
 .env.*
 .env.local
+serviceAccountKey.json
 .env.development
 .env.development.local
 .env.test
@@ -54,3 +55,22 @@ docker-compose.override.yml
 # Misc
 .cache/
 .temp/
+
+# Secrets
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.keystore
+*.jks
+id_rsa
+id_dsa
+id_ed25519
+*.ppk
+*.pub
+secrets.json
+secrets.yaml
+secrets.yml
+firebase-debug.log

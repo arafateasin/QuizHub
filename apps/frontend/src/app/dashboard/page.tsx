@@ -4,7 +4,7 @@ import { ProtectedRoute } from "@/components/protected-route";
 import { DashboardLayout } from "@/components/dashboard-layout";
 import { useAuth } from "@/contexts/auth-context";
 import { useQuery } from "@tanstack/react-query";
-import { getUserAttempts } from "@/lib/api/quiz";
+import { getUserAttempts, getUserStats } from "@/lib/api/quiz";
 import { getProfile } from "@/lib/api/user";
 import {
   Trophy,
@@ -32,37 +32,43 @@ export default function DashboardPage() {
 function DashboardContent() {
   const { user } = useAuth();
 
-  // Fetch user profile - only when user is authenticated
+  // Fetch user profile
   const { data: profileData } = useQuery({
     queryKey: ["profile"],
     queryFn: getProfile,
-    enabled: !!user, // Only fetch when user exists
-    retry: false, // Don't retry on failure
+    enabled: !!user,
+    retry: false,
   });
 
-  // Fetch recent attempts - only when user is authenticated
+  // Fetch user stats
+  const { data: statsData } = useQuery({
+    queryKey: ["userStats"],
+    queryFn: getUserStats,
+    enabled: !!user,
+    retry: false,
+  });
+
+  // Fetch recent attempts
   const { data: attemptsData } = useQuery({
     queryKey: ["attempts", { limit: 5 }],
     queryFn: () => getUserAttempts({ limit: 5 }),
-    enabled: !!user, // Only fetch when user exists
-    retry: false, // Don't retry on failure
+    enabled: !!user,
+    retry: false,
   });
 
   const profile = (profileData as any)?.data;
+  const stats = (statsData as any)?.data;
   const attempts = (attemptsData as any)?.data || [];
 
-  const userXp = profile?.xp || 0;
+  // Use stats for XP if available, fallback to profile
+  const userXp = stats?.totalXp || profile?.xp || 0;
   const userLevel = calculateLevel(userXp);
   const xpProgress = xpForNextLevel(userXp);
 
   // Calculate stats
-  const totalQuizzes = attempts.length;
+  const totalQuizzes = stats?.quizzesCompleted || attempts.length;
   const passedQuizzes = attempts.filter((a: any) => a.isPassed).length;
-  const averageScore =
-    totalQuizzes > 0
-      ? attempts.reduce((sum: number, a: any) => sum + a.percentage, 0) /
-        totalQuizzes
-      : 0;
+  const averageScore = stats?.averageScore || 0;
 
   return (
     <div className="max-w-7xl mx-auto space-y-8">

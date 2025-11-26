@@ -6,9 +6,7 @@ import {
   paginatedResponse,
   ForbiddenError,
 } from "@quizhub/shared";
-// TODO: Create Firestore services for Quiz and Attempt
-// import { Quiz } from "../models/quiz.model";
-// import { Attempt } from "../models/attempt.model";
+import { Quiz } from "../models/quiz.model";
 import { AuthRequest } from "../middleware/auth.middleware";
 import { logger } from "../utils/logger";
 
@@ -27,12 +25,17 @@ export const createQuiz = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    res
-      .status(501)
-      .json({
-        success: false,
-        error: "Quiz functionality is being migrated to Firestore",
-      });
+    const userId = req.user?.userId;
+    if (!userId) throw new ForbiddenError("User ID not found");
+
+    const quiz = await Quiz.create({
+      ...req.body,
+      createdBy: userId,
+    }) as any;
+
+    logger.info(`Quiz created: ${quiz._id} by user ${userId}`);
+
+    res.status(201).json(successResponse(quiz, "Quiz created successfully"));
   } catch (error) {
     next(error);
   }
@@ -51,12 +54,34 @@ export const getQuizzes = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    res
-      .status(501)
-      .json({
-        success: false,
-        error: "Quiz functionality is being migrated to Firestore",
-      });
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = (req.query.search as string) || "";
+    const category = (req.query.category as string) || "";
+    const difficulty = (req.query.difficulty as string) || "";
+
+    const query: any = { isPublic: true };
+
+    if (category) {
+      query.category = category;
+    }
+    if (difficulty) {
+      query.difficulty = difficulty.toUpperCase();
+    }
+    if (search) {
+      query.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const total = await Quiz.countDocuments(query);
+    const quizzes = await Quiz.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    res.json(paginatedResponse(quizzes, page, limit, total));
   } catch (error) {
     next(error);
   }
@@ -75,12 +100,14 @@ export const getQuizById = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    res
-      .status(501)
-      .json({
-        success: false,
-        error: "Quiz functionality is being migrated to Firestore",
-      });
+    const { id } = req.params;
+    const quiz = await Quiz.findById(id);
+
+    if (!quiz) {
+      throw new NotFoundError("Quiz not found");
+    }
+
+    res.json(successResponse(quiz));
   } catch (error) {
     next(error);
   }
@@ -101,12 +128,26 @@ export const updateQuiz = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    res
-      .status(501)
-      .json({
-        success: false,
-        error: "Quiz functionality is being migrated to Firestore",
-      });
+    const { id } = req.params;
+    const userId = req.user?.userId;
+
+    const quiz = await Quiz.findById(id);
+
+    if (!quiz) {
+      throw new NotFoundError("Quiz not found");
+    }
+
+    if (quiz.createdBy !== userId && req.user?.role !== "admin") {
+      throw new ForbiddenError("You are not authorized to update this quiz");
+    }
+
+    const updatedQuiz = await Quiz.findByIdAndUpdate(
+      id,
+      { ...req.body, updatedAt: new Date() },
+      { new: true, runValidators: true }
+    );
+
+    res.json(successResponse(updatedQuiz, "Quiz updated successfully"));
   } catch (error) {
     next(error);
   }
@@ -127,12 +168,21 @@ export const deleteQuiz = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    res
-      .status(501)
-      .json({
-        success: false,
-        error: "Quiz functionality is being migrated to Firestore",
-      });
+    const { id } = req.params;
+    const userId = req.user?.userId;
+
+    const quiz = await Quiz.findById(id);
+
+    if (!quiz) {
+      throw new NotFoundError("Quiz not found");
+    }
+
+    if (quiz.createdBy !== userId && req.user?.role !== "admin") {
+      throw new ForbiddenError("You are not authorized to delete this quiz");
+    }
+
+    await Quiz.findByIdAndDelete(id);
+    res.json(successResponse(null, "Quiz deleted successfully"));
   } catch (error) {
     next(error);
   }
@@ -153,12 +203,14 @@ export const getMyQuizzes = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    res
-      .status(501)
-      .json({
-        success: false,
-        error: "Quiz functionality is being migrated to Firestore",
-      });
+    const userId = req.user?.userId;
+    if (!userId) throw new ForbiddenError("User ID not found");
+
+    const quizzes = await Quiz.find({ createdBy: userId }).sort({
+      createdAt: -1,
+    });
+
+    res.json(successResponse(quizzes));
   } catch (error) {
     next(error);
   }

@@ -145,3 +145,13 @@ export const getUserAttempts = async (params?: {
   const response = await apiClient.get("/attempts/user/history", { params });
   return response.data;
 };
+
+// Get user stats
+export const getUserStats = async (): Promise<ApiResponse<{
+  quizzesCompleted: number;
+  totalXp: number;
+  averageScore: number;
+}>> => {
+  const response = await apiClient.get("/attempts/user/stats");
+  return response.data;
+};

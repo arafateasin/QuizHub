@@ -253,7 +253,18 @@ export class UserService {
    * Get sanitized user (without sensitive fields)
    */
   toJSON(user: IUser): Partial<IUser> {
-    return this.sanitizeUser(user);
+    const sanitized = this.sanitizeUser(user);
+    
+    // Convert Firestore Timestamps to Dates/Strings
+    if (sanitized.createdAt && typeof (sanitized.createdAt as any).toDate === 'function') {
+      sanitized.createdAt = (sanitized.createdAt as any).toDate();
+    }
+    
+    if (sanitized.updatedAt && typeof (sanitized.updatedAt as any).toDate === 'function') {
+      sanitized.updatedAt = (sanitized.updatedAt as any).toDate();
+    }
+    
+    return sanitized;
   }
 }
 

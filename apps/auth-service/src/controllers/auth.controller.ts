@@ -335,6 +335,7 @@ export const exchangeFirebaseToken = async (
     }
 
     logger.info(`[AUTH] Verifying Firebase token...`);
+
     // Verify Firebase token with Firebase Admin SDK
     const { admin } = await import("../config/firebase-admin");
     let decoded: any;

@@ -1,8 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import dotenv from "dotenv";
-import { initializeFirebaseAdmin } from "./config/firebase-admin";
+import { connectDatabase } from "./config/database";
 import { logger } from "./utils/logger";
 import quizRoutes from "./routes/quiz.routes";
 import attemptRoutes from "./routes/attempt.routes";
@@ -12,8 +14,6 @@ import subjectRoutes from "./routes/subject.routes";
 import chapterRoutes from "./routes/chapter.routes";
 import { errorHandler } from "./middleware/error.middleware";
 import { setupSwagger } from "./config/swagger";
-
-dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 3002;
@@ -69,10 +69,9 @@ app.use(errorHandler);
 // Start Server
 const startServer = async () => {
   try {
-    // Initialize Firebase Admin SDK
-    initializeFirebaseAdmin();
-    logger.info("✅ Firebase Admin SDK initialized");
-
+    // Connect to MongoDB
+    await connectDatabase();
+    
     app.listen(PORT, () => {
       logger.info(`🚀 Quiz Service running on port ${PORT}`);
       logger.info(`📚 API Docs available at http://localhost:${PORT}/api-docs`);
