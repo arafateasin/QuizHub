@@ -17,15 +17,9 @@ services:
       - key: CORS_ORIGIN
         sync: false # User must update this after deploying frontend
       - key: AUTH_SERVICE_URL
-        fromService:
-          type: web
-          name: quizhub-auth
-          property: url
+        value: http://quizhub-auth:10000
       - key: QUIZ_SERVICE_URL
-        fromService:
-          type: web
-          name: quizhub-quiz
-          property: url
+        value: http://quizhub-quiz:10000
 
   # ---------------------------------------------------
   # 2. AUTH SERVICE (Internal)
@@ -70,7 +64,4 @@ services:
       - key: MONGO_URI
         sync: false # User must provide this
       - key: AUTH_SERVICE_URL
-        fromService:
-          type: web
-          name: quizhub-auth
-          property: url
+        value: http://quizhub-auth:10000
