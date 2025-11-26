@@ -1,0 +1,76 @@
+services:
+  # ---------------------------------------------------
+  # 1. GATEWAY SERVICE (Public Entry Point)
+  # ---------------------------------------------------
+  - type: web
+    name: quizhub-gateway
+    env: docker
+    dockerfilePath: ./apps/gateway/Dockerfile
+    plan: free
+    branch: main
+    numInstances: 1
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        sync: false # User must update this after deploying frontend
+      - key: AUTH_SERVICE_URL
+        fromService:
+          type: web
+          name: quizhub-auth
+          property: url
+      - key: QUIZ_SERVICE_URL
+        fromService:
+          type: web
+          name: quizhub-quiz
+          property: url
+
+  # ---------------------------------------------------
+  # 2. AUTH SERVICE (Internal)
+  # ---------------------------------------------------
+  - type: web
+    name: quizhub-auth
+    env: docker
+    dockerfilePath: ./apps/auth-service/Dockerfile
+    plan: free
+    branch: main
+    numInstances: 1
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false # User must provide this
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: FIREBASE_PROJECT_ID
+        value: quizhub-98649
+      # Note: For GOOGLE_APPLICATION_CREDENTIALS, use a Secret File in Render Dashboard
+
+  # ---------------------------------------------------
+  # 3. QUIZ SERVICE (Internal)
+  # ---------------------------------------------------
+  - type: web
+    name: quizhub-quiz
+    env: docker
+    dockerfilePath: ./apps/quiz-service/Dockerfile
+    plan: free
+    branch: main
+    numInstances: 1
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false # User must provide this
+      - key: AUTH_SERVICE_URL
+        fromService:
+          type: web
+          name: quizhub-auth
+          property: url
