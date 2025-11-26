@@ -68,3 +68,9 @@ You need to add **3 Services** (Components) pointing to the same repository but 
 1.  Get the **Public URL** of the `gateway` service.
 2.  Update your Frontend's `NEXT_PUBLIC_API_URL` on Netlify to this URL.
 3.  Update the `CORS_ORIGIN` on Gateway/Auth/Quiz services to your Netlify URL.
+
+## Troubleshooting Builds
+If your build fails on Digital Ocean (e.g., timeout during `npm install`), try:
+1.  **Increase Build Resources**: Upgrade the build instance size in App Platform settings.
+2.  **Check Logs**: Look for specific package failures in the build logs.
+3.  **Local Verification**: Run `docker build -f apps/gateway/Dockerfile .` locally to debug.

@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Copy root workspace definition
 COPY package*.json ./
+COPY tsconfig.json ./
 
 # Copy shared package
 COPY packages/shared ./packages/shared
@@ -11,7 +12,7 @@ COPY packages/shared ./packages/shared
 # Copy service source
 COPY apps/quiz-service ./apps/quiz-service
 
-# Install dependencies
+# Install dependencies (including devDependencies for build)
 RUN npm install
 
 # Build shared package first
