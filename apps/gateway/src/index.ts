@@ -35,6 +35,16 @@ const limiter = rateLimit({
 });
 app.use("/api/", limiter);
 
+// Health check
+app.get("/health", (req: Request, res: Response) => {
+  res.status(200).json({
+    success: true,
+    service: "gateway",
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Service routes
 app.use("/api/auth", authProxy);
 app.use("/api/users", authProxy);

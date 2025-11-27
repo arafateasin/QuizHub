@@ -1,79 +1,84 @@
-# Deployment Guide: Digital Ocean + Netlify
+# Deployment Guide: Render + Netlify
 
-This guide explains how to deploy the **Backend** to Digital Ocean App Platform and the **Frontend** to Netlify.
+This guide explains how to deploy the **Backend** to Render and the **Frontend** to Netlify.
 
-## Part 1: Backend Deployment (Digital Ocean)
+## Part 1: Backend Deployment (Render)
 
-We will deploy the 3 backend services (`gateway`, `auth-service`, `quiz-service`) as components within a single Digital Ocean App.
+We will use the `render.yaml` blueprint to deploy all 3 backend services (Gateway, Auth, Quiz) automatically.
 
-### 1. Create App
-1.  Go to [cloud.digitalocean.com/apps](https://cloud.digitalocean.com/apps).
-2.  Click **Create App**.
-3.  **Service Provider**: Select **GitHub**.
-4.  **Repository**: Select `QuizHub`.
-5.  **Branch**: `main`.
-6.  **Source Directory**: `/` (Keep as default).
-7.  Click **Next**.
+### 1. Push Changes
+Ensure you have pushed the latest code (including `render.yaml` and `Dockerfile` fixes) to GitHub:
+```bash
+git add .
+git commit -m "chore: ready for render deployment"
+git push
+```
 
-### 2. Configure Resources (Services)
-Digital Ocean might try to auto-detect. You need to configure **3 separate services**. If it detects one, edit it. You can add more components later or configure them all now.
+### 2. Create Blueprint on Render
+1.  Go to [dashboard.render.com](https://dashboard.render.com).
+2.  Click **New +** -> **Blueprint**.
+3.  Connect your GitHub account and select the `QuizHub` repository.
+4.  **Name**: `quizhub-backend`.
+5.  **Review Resources**: You will see 3 services listed (`quizhub-gateway`, `quizhub-auth`, `quizhub-quiz`).
+6.  **Environment Variables**: You will be prompted to enter values for:
+    *   `MONGO_URI`: Your MongoDB connection string.
+    *   `CORS_ORIGIN`: Put `*` (asterisk) for now. We will update this after deploying the frontend.
+7.  Click **Apply**.
 
-#### Service 1: Gateway (Public Entry Point)
-*   **Name**: `quizhub-gateway`
-*   **Type**: Web Service
-*   **Dockerfile Path**: `apps/gateway/Dockerfile`
-*   **HTTP Port**: `3000`
-*   **Environment Variables**:
-    *   `PORT`: `3000`
-    *   `NODE_ENV`: `production`
-    *   `CORS_ORIGIN`: `*` (Update to Netlify URL later)
-    *   `AUTH_SERVICE_URL`: `${quizhub-auth.PRIVATE_URL}` (or the public URL if private networking fails)
-    *   `QUIZ_SERVICE_URL`: `${quizhub-quiz.PRIVATE_URL}`
+### 3. Upload Secret File (Crucial for Auth)
+**IMMEDIATELY** after clicking Apply (while it's building):
+1.  Click on the **quizhub-auth** service in the dashboard.
+2.  Go to **Environment** tab.
+3.  Scroll down to **Secret Files**.
+4.  Click **Add Secret File**.
+5.  **Filename**: `serviceAccountKey.json` (Must match exactly).
+6.  **Content**: Paste the entire content of your local `serviceAccountKey.json`.
+7.  Click **Save Changes**.
 
-#### Service 2: Auth Service
-*   **Name**: `quizhub-auth`
-*   **Type**: Web Service
-*   **Dockerfile Path**: `apps/auth-service/Dockerfile`
-*   **HTTP Port**: `3001`
-*   **Environment Variables**:
-    *   `PORT`: `3001`
-    *   `NODE_ENV`: `production`
-    *   `MONGO_URI`: (Your MongoDB Connection String)
-    *   `JWT_SECRET`: (Generate a secure random string)
-    *   `JWT_REFRESH_SECRET`: (Generate a secure random string)
-    *   `FIREBASE_PROJECT_ID`: `quizhub-98649`
-    *   `FIREBASE_SERVICE_ACCOUNT_JSON`: (Paste the entire content of `serviceAccountKey.json` here)
-
-#### Service 3: Quiz Service
-*   **Name**: `quizhub-quiz`
-*   **Type**: Web Service
-*   **Dockerfile Path**: `apps/quiz-service/Dockerfile`
-*   **HTTP Port**: `3002`
-*   **Environment Variables**:
-    *   `PORT`: `3002`
-    *   `NODE_ENV`: `production`
-    *   `MONGO_URI`: (Your MongoDB Connection String)
-    *   `AUTH_SERVICE_URL`: `${quizhub-auth.PRIVATE_URL}`
-
-### 3. Review and Create
-1.  Select your plan (Basic or Pro).
-2.  Click **Create Resources**.
+### 4. Get Gateway URL
+Once deployment finishes (green checkmarks):
+1.  Click on the `quizhub-gateway` service.
+2.  Copy the URL (e.g., `https://quizhub-gateway.onrender.com`).
+    *   **This is your `NEXT_PUBLIC_API_URL`.**
 
 ---
 
 ## Part 2: Frontend Deployment (Netlify)
 
-(Same as before)
+### 1. New Site
+1.  Go to [app.netlify.com](https://app.netlify.com).
+2.  Click **Add new site** -> **Import from Git**.
+3.  Select **GitHub** and choose `QuizHub`.
 
-1.  **New Site** -> Import from Git -> `QuizHub`.
-2.  **Base directory**: `apps/frontend`.
-3.  **Build command**: `npm --workspace @quizhub/frontend run build`.
-4.  **Publish directory**: `apps/frontend/.next`.
-5.  **Env Vars**:
-    *   `NEXT_PUBLIC_API_URL`: (Your Digital Ocean Gateway URL)
-    *   (Add all Firebase public vars)
+### 2. Configure Build
+*   **Base directory**: `apps/frontend`
+*   **Build command**: `npm --workspace @quizhub/frontend run build`
+*   **Publish directory**: `apps/frontend/.next`
+
+### 3. Environment Variables
+Click **Add environment variables** and add:
+
+| Key | Value |
+| :--- | :--- |
+| `NEXT_PUBLIC_API_URL` | `https://quizhub-gateway.onrender.com` (Your Render Gateway URL) |
+| `NEXT_PUBLIC_FIREBASE_API_KEY` | `AIzaSyDQzIyWyRlpxZdwcF4eVQqK7yns_QbTNpM` |
+| `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | `quizhub-98649.firebaseapp.com` |
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | `quizhub-98649` |
+| `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET` | `quizhub-98649.firebasestorage.app` |
+| `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | `113444927449` |
+| `NEXT_PUBLIC_FIREBASE_APP_ID` | `1:113444927449:web:846d144c88f1b2045bcbc8` |
+| `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` | `G-VEMWBTK5DG` |
+
+### 4. Deploy
+Click **Deploy site**.
 
 ---
 
-## Part 3: Final Config
-1.  Update `CORS_ORIGIN` in Digital Ocean `quizhub-gateway` to your Netlify URL.
+## Part 3: Final Security Step
+
+Once your Netlify site is live (e.g., `https://quizhub-frontend.netlify.app`):
+
+1.  Go back to **Render Dashboard**.
+2.  Go to **Blueprints** -> `quizhub-backend` -> **Env Groups** (or individual services).
+3.  Update `CORS_ORIGIN` to your Netlify URL: `https://quizhub-frontend.netlify.app` (No trailing slash!).
+4.  Render will auto-redeploy.
